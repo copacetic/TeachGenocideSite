@@ -191,7 +191,8 @@ ul, li
     left: 300px;
     width: 0;
     height: 0;
-    border-left: 10px solid #f1da0e;
+    margin-left: -10px;
+    border-right: 10px solid white;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }

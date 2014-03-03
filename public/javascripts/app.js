@@ -6,11 +6,12 @@ function on_load()
         var currSML = getSubmenuListClass(currMMI);
         var currMLB = currMMI.find('.mainLineBox');
         var currMOLB = currMMI.find('.mainOpenLineBox');
+        var topL = 0;
 
         if(currMMI.hasClass("clicked"))
         {
             currMMI.removeClass("clicked");
-            if (currSML.length !== 0) 
+            if (currSML.length !== 0)
             {
                 currSML.slideUp(300);
                 currMLB.show();
@@ -50,7 +51,7 @@ function on_load()
                             currSMI.removeClass("clicked");
                             hlTextToggle(false, currSMT);
                         }
-                    });                    
+                    });
                 }
             });
 
@@ -58,12 +59,12 @@ function on_load()
             if (currSML.length !== 0) {
                 currMOLB.show();
                 currMLB.hide();
-                currSML.slideDown(300);
+                currSML.slideDown(300, function() {
+                    // move selectorArrow
+                    topL = currMMI.offset().top;
+                    $('#selector').animate({ top: topL}, 200);
+                });
             }
-
-            // move selectorArrow
-            topL = currMMI.offset().top;
-            $('#selector').animate({ top: topL}, 200);
         }
     });
 
@@ -103,19 +104,19 @@ function on_load()
     $('#logo').click(function()
     {
         selector = $('#selector');
-        
+
         if(selector.hasClass('selectorLine'))
         {
             console.log("hasline");
             selector.addClass("selectorArrow");
-            selector.removeClass("selectorLine");   
+            selector.removeClass("selectorLine");
         }
         else if(selector.hasClass('selectorArrow'))
         {
             console.log("nothasline");
             selector.removeClass("selectorArrow");
             selector.addClass("selectorLine");
-        }   
+        }
     });
 }
 
@@ -135,7 +136,7 @@ function hlTextToggle(highlight, textSpan)
     {
         //textSpan.html(textSpan.html().replace("&nbsp;&nbsp;~", "")
         //                            .replace("~&nbsp;&nbsp;", ""));
-        textSpan.css("font-weight", "500");        
+        textSpan.css("font-weight", "500");
     }
 }
 
